@@ -10,6 +10,9 @@ client = MongoClient('mongodb://localhost:27017/')
 db = client['mergington_high']
 activities_collection = db['activities']
 teachers_collection = db['teachers']
+bank_users_collection = db['bank_users']
+bank_accounts_collection = db['bank_accounts']
+bank_transactions_collection = db['bank_transactions']
 
 # Methods
 def hash_password(password):
@@ -29,6 +32,19 @@ def init_database():
     if teachers_collection.count_documents({}) == 0:
         for teacher in initial_teachers:
             teachers_collection.insert_one({"_id": teacher["username"], **teacher})
+
+    # Initialize banking data if empty
+    if bank_users_collection.count_documents({}) == 0:
+        for user in initial_bank_users:
+            bank_users_collection.insert_one({"_id": user["username"], **user})
+
+    if bank_accounts_collection.count_documents({}) == 0:
+        for account in initial_bank_accounts:
+            bank_accounts_collection.insert_one({"_id": account["account_number"], **account})
+
+    if bank_transactions_collection.count_documents({}) == 0:
+        for transaction in initial_bank_transactions:
+            bank_transactions_collection.insert_one(transaction)
 
 # Initial database if empty
 initial_activities = {
@@ -184,6 +200,177 @@ initial_teachers = [
         "display_name": "Principal Martinez",
         "password": hash_password("admin789"),
         "role": "admin"
+    }
+]
+
+initial_bank_users = [
+    {
+        "username": "jsmith",
+        "display_name": "Jane Smith",
+        "password": hash_password("bank123"),
+        "email": "jane.smith@example.com",
+        "phone": "555-0101",
+        "address": "123 Main St, Springfield, IL 62701"
+    },
+    {
+        "username": "bjones",
+        "display_name": "Bob Jones",
+        "password": hash_password("secure456"),
+        "email": "bob.jones@example.com",
+        "phone": "555-0202",
+        "address": "456 Oak Ave, Springfield, IL 62702"
+    }
+]
+
+initial_bank_accounts = [
+    {
+        "account_number": "CHK-001-001",
+        "owner_username": "jsmith",
+        "account_type": "checking",
+        "account_name": "Primary Checking",
+        "balance": 4250.75,
+        "currency": "USD",
+        "status": "active"
+    },
+    {
+        "account_number": "SAV-001-001",
+        "owner_username": "jsmith",
+        "account_type": "savings",
+        "account_name": "High-Yield Savings",
+        "balance": 12800.00,
+        "currency": "USD",
+        "status": "active"
+    },
+    {
+        "account_number": "CC-001-001",
+        "owner_username": "jsmith",
+        "account_type": "credit",
+        "account_name": "Rewards Credit Card",
+        "balance": -950.30,
+        "credit_limit": 5000.00,
+        "currency": "USD",
+        "status": "active"
+    },
+    {
+        "account_number": "CHK-002-001",
+        "owner_username": "bjones",
+        "account_type": "checking",
+        "account_name": "Primary Checking",
+        "balance": 2100.50,
+        "currency": "USD",
+        "status": "active"
+    },
+    {
+        "account_number": "SAV-002-001",
+        "owner_username": "bjones",
+        "account_type": "savings",
+        "account_name": "Emergency Fund",
+        "balance": 8500.00,
+        "currency": "USD",
+        "status": "active"
+    }
+]
+
+initial_bank_transactions = [
+    {
+        "transaction_id": "TXN-001",
+        "account_number": "CHK-001-001",
+        "type": "debit",
+        "amount": 62.50,
+        "description": "Grocery Store - Fresh Market",
+        "category": "Food & Dining",
+        "date": "2026-03-12",
+        "balance_after": 4250.75
+    },
+    {
+        "transaction_id": "TXN-002",
+        "account_number": "CHK-001-001",
+        "type": "credit",
+        "amount": 3200.00,
+        "description": "Direct Deposit - Payroll",
+        "category": "Income",
+        "date": "2026-03-10",
+        "balance_after": 4313.25
+    },
+    {
+        "transaction_id": "TXN-003",
+        "account_number": "CHK-001-001",
+        "type": "debit",
+        "amount": 120.00,
+        "description": "Electric Bill - City Power",
+        "category": "Bills & Utilities",
+        "date": "2026-03-08",
+        "balance_after": 1113.25
+    },
+    {
+        "transaction_id": "TXN-004",
+        "account_number": "CHK-001-001",
+        "type": "debit",
+        "amount": 45.99,
+        "description": "Netflix Subscription",
+        "category": "Entertainment",
+        "date": "2026-03-07",
+        "balance_after": 1233.25
+    },
+    {
+        "transaction_id": "TXN-005",
+        "account_number": "CHK-001-001",
+        "type": "debit",
+        "amount": 200.00,
+        "description": "Transfer to Savings",
+        "category": "Transfer",
+        "date": "2026-03-05",
+        "balance_after": 1279.24
+    },
+    {
+        "transaction_id": "TXN-006",
+        "account_number": "SAV-001-001",
+        "type": "credit",
+        "amount": 200.00,
+        "description": "Transfer from Checking",
+        "category": "Transfer",
+        "date": "2026-03-05",
+        "balance_after": 12800.00
+    },
+    {
+        "transaction_id": "TXN-007",
+        "account_number": "SAV-001-001",
+        "type": "credit",
+        "amount": 32.50,
+        "description": "Interest Payment",
+        "category": "Interest",
+        "date": "2026-03-01",
+        "balance_after": 12600.00
+    },
+    {
+        "transaction_id": "TXN-008",
+        "account_number": "CC-001-001",
+        "type": "debit",
+        "amount": 89.99,
+        "description": "Amazon Purchase",
+        "category": "Shopping",
+        "date": "2026-03-11",
+        "balance_after": -950.30
+    },
+    {
+        "transaction_id": "TXN-009",
+        "account_number": "CC-001-001",
+        "type": "debit",
+        "amount": 35.00,
+        "description": "Gas Station - QuickFuel",
+        "category": "Auto & Transport",
+        "date": "2026-03-09",
+        "balance_after": -860.31
+    },
+    {
+        "transaction_id": "TXN-010",
+        "account_number": "CC-001-001",
+        "type": "credit",
+        "amount": 300.00,
+        "description": "Payment - Thank You",
+        "category": "Payment",
+        "date": "2026-03-03",
+        "balance_after": -825.31
     }
 ]
 
