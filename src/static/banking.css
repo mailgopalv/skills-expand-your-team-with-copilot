@@ -1,0 +1,643 @@
+/* =============================================
+   SecureBank Dashboard Styles
+   ============================================= */
+
+:root {
+  --bank-primary: #1a237e;
+  --bank-primary-light: #3949ab;
+  --bank-primary-dark: #000051;
+  --bank-accent: #00897b;
+  --bank-accent-light: #4db6ac;
+  --bank-danger: #c62828;
+  --bank-success: #2e7d32;
+  --bank-warning: #e65100;
+  --bank-bg: #f0f2f5;
+  --bank-surface: #ffffff;
+  --bank-surface-alt: #f8f9fa;
+  --bank-border: #dee2e6;
+  --bank-text: #212529;
+  --bank-text-muted: #6c757d;
+  --bank-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  --bank-shadow-hover: 0 6px 24px rgba(0, 0, 0, 0.12);
+  --radius: 10px;
+  --radius-sm: 6px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+  background-color: var(--bank-bg);
+  color: var(--bank-text);
+  min-height: 100vh;
+}
+
+/* =============================================
+   LOGIN SCREEN
+   ============================================= */
+
+#login-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--bank-primary-dark) 0%, var(--bank-primary-light) 100%);
+  padding: 20px;
+}
+
+.login-card {
+  background: var(--bank-surface);
+  border-radius: var(--radius);
+  padding: 40px 36px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.bank-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.bank-logo h1 {
+  color: var(--bank-primary);
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.bank-icon {
+  font-size: 2rem;
+}
+
+.login-card h2 {
+  text-align: center;
+  color: var(--bank-text);
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 24px;
+  color: var(--bank-text-muted);
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--bank-text-muted);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--bank-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  color: var(--bank-text);
+  background-color: var(--bank-surface);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--bank-primary-light);
+  box-shadow: 0 0 0 3px rgba(57, 73, 171, 0.12);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--bank-primary), var(--bank-primary-light));
+  color: white;
+  border: none;
+  padding: 11px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.btn-primary:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-full {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  color: white;
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.error-message {
+  background-color: #fdecea;
+  color: var(--bank-danger);
+  border: 1px solid #f5c6cb;
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 0.875rem;
+  margin-bottom: 14px;
+}
+
+.login-hint {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--bank-text-muted);
+}
+
+/* =============================================
+   DASHBOARD LAYOUT
+   ============================================= */
+
+#dashboard-screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header */
+.bank-header {
+  background: linear-gradient(135deg, var(--bank-primary-dark), var(--bank-primary));
+  color: white;
+  padding: 0 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 60px;
+}
+
+.bank-logo-small {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.bank-name {
+  font-size: 1.1rem;
+}
+
+.header-nav {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.75);
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+  background: rgba(255, 255, 255, 0.18);
+  color: white;
+}
+
+.header-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  font-size: 0.9rem;
+}
+
+/* Main Content */
+.dashboard-main {
+  flex: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 28px 20px;
+}
+
+.dashboard-section {
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.section-header {
+  margin-bottom: 24px;
+}
+
+.section-header h2 {
+  font-size: 1.5rem;
+  color: var(--bank-primary-dark);
+  font-weight: 700;
+}
+
+.greeting {
+  color: var(--bank-text-muted);
+  margin-top: 4px;
+  font-size: 0.9rem;
+}
+
+/* =============================================
+   ACCOUNT CARDS
+   ============================================= */
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.account-card {
+  background: var(--bank-surface);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--bank-shadow);
+  border-left: 4px solid var(--bank-primary-light);
+  transition: box-shadow 0.2s, transform 0.2s;
+  cursor: default;
+}
+
+.account-card:hover {
+  box-shadow: var(--bank-shadow-hover);
+  transform: translateY(-2px);
+}
+
+.account-card.checking {
+  border-left-color: var(--bank-primary-light);
+}
+
+.account-card.savings {
+  border-left-color: var(--bank-accent);
+}
+
+.account-card.credit {
+  border-left-color: var(--bank-warning);
+}
+
+.account-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.account-type-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  background-color: var(--bank-surface-alt);
+  color: var(--bank-text-muted);
+  border: 1px solid var(--bank-border);
+}
+
+.account-icon {
+  font-size: 1.4rem;
+}
+
+.account-name {
+  font-size: 0.85rem;
+  color: var(--bank-text-muted);
+  margin-bottom: 6px;
+}
+
+.account-number {
+  font-size: 0.75rem;
+  color: var(--bank-text-muted);
+  font-family: monospace;
+  margin-bottom: 14px;
+}
+
+.account-balance {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--bank-text);
+}
+
+.account-balance.negative {
+  color: var(--bank-danger);
+}
+
+.account-balance-label {
+  font-size: 0.75rem;
+  color: var(--bank-text-muted);
+  margin-bottom: 2px;
+}
+
+.credit-limit-bar {
+  margin-top: 12px;
+}
+
+.credit-limit-bar-bg {
+  height: 5px;
+  background-color: var(--bank-border);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.credit-limit-bar-fill {
+  height: 100%;
+  background-color: var(--bank-warning);
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+
+.credit-limit-text {
+  font-size: 0.72rem;
+  color: var(--bank-text-muted);
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3px;
+}
+
+/* Net Worth Card */
+.net-worth-card {
+  background: linear-gradient(135deg, var(--bank-primary-dark), var(--bank-primary-light));
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  box-shadow: var(--bank-shadow);
+}
+
+.net-worth-label {
+  font-size: 0.9rem;
+  opacity: 0.85;
+  font-weight: 500;
+}
+
+.net-worth-amount {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* =============================================
+   TRANSACTIONS
+   ============================================= */
+
+.recent-activity-section h3 {
+  font-size: 1.1rem;
+  color: var(--bank-primary-dark);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.transactions-list {
+  background: var(--bank-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--bank-shadow);
+  overflow: hidden;
+}
+
+.transaction-row {
+  display: flex;
+  align-items: center;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--bank-border);
+  transition: background 0.15s;
+}
+
+.transaction-row:last-child {
+  border-bottom: none;
+}
+
+.transaction-row:hover {
+  background-color: var(--bank-surface-alt);
+}
+
+.transaction-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: var(--bank-surface-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  margin-right: 14px;
+  border: 1px solid var(--bank-border);
+}
+
+.transaction-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.transaction-description {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--bank-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.transaction-meta {
+  font-size: 0.75rem;
+  color: var(--bank-text-muted);
+  margin-top: 2px;
+  display: flex;
+  gap: 8px;
+}
+
+.transaction-category {
+  background: var(--bank-surface-alt);
+  border: 1px solid var(--bank-border);
+  padding: 1px 6px;
+  border-radius: 10px;
+  font-size: 0.7rem;
+}
+
+.transaction-amount {
+  font-size: 0.95rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-left: 10px;
+}
+
+.transaction-amount.credit {
+  color: var(--bank-success);
+}
+
+.transaction-amount.debit {
+  color: var(--bank-danger);
+}
+
+/* Account selector bar */
+.account-selector-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.account-selector-bar label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--bank-text-muted);
+}
+
+.account-selector-bar select {
+  padding: 8px 14px;
+  border: 1.5px solid var(--bank-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  color: var(--bank-text);
+  background-color: var(--bank-surface);
+  cursor: pointer;
+  min-width: 220px;
+}
+
+.account-selector-bar select:focus {
+  outline: none;
+  border-color: var(--bank-primary-light);
+}
+
+/* =============================================
+   TRANSFER SECTION
+   ============================================= */
+
+.transfer-card {
+  background: var(--bank-surface);
+  border-radius: var(--radius);
+  padding: 28px;
+  max-width: 500px;
+  box-shadow: var(--bank-shadow);
+}
+
+.message-box {
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  margin-bottom: 14px;
+}
+
+.message-box.success {
+  background-color: #e8f5e9;
+  color: var(--bank-success);
+  border: 1px solid #c8e6c9;
+}
+
+.message-box.error {
+  background-color: #fdecea;
+  color: var(--bank-danger);
+  border: 1px solid #f5c6cb;
+}
+
+/* =============================================
+   FOOTER
+   ============================================= */
+
+.bank-footer {
+  text-align: center;
+  padding: 16px;
+  font-size: 0.78rem;
+  color: var(--bank-text-muted);
+  border-top: 1px solid var(--bank-border);
+  background: var(--bank-surface);
+}
+
+/* =============================================
+   UTILITIES
+   ============================================= */
+
+.hidden {
+  display: none !important;
+}
+
+.loading-text {
+  text-align: center;
+  color: var(--bank-text-muted);
+  padding: 24px;
+  font-size: 0.9rem;
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+
+@media (max-width: 600px) {
+  .header-inner {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 10px 0;
+    gap: 10px;
+  }
+
+  .header-nav {
+    order: 3;
+    justify-content: flex-start;
+  }
+
+  .summary-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .net-worth-card {
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+  }
+
+  .transfer-card {
+    padding: 18px;
+  }
+}
